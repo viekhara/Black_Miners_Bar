@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Black Miners Bar Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+        h1 {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(216, 191, 216, 0.9);
+            padding: 15px 20px;
+            margin: 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            font-family: 'Brush Script MT', cursive;
+            font-size: 24px;
+            color: magenta;
+        }
+    </style>
+</head>
+<body>
+    <h1>Folsom Lake State Recreation Area</h1>
+    <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        const map = L.map('map').setView([38.6590684, -121.187034], 13);
+
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles © Esri'
+        }).addTo(map);
+
+        const marker = L.circleMarker([38.6590684, -121.187034], {
+            color: '#ffffff',
+            fillColor: '#4264FB',
+            fillOpacity: 1,
+            radius: 8,
+            weight: 2
+        }).addTo(map);
+
+        marker.bindPopup(`
+            <div style="max-width:250px">
+                <h3 style="margin:0 0 8px 0;">Black Miners Bar</h3>
+                <img src="https://www.parks.ca.gov/pages/712/images/NegroBar02.JPG" 
+                     alt="Black Miners Bar" 
+                     style="width:100%; border-radius:5px; margin-bottom:8px;">
+                <p style="margin:0; font-size:13px;">Day-use area within Folsom Lake SRA — 18,000 acres across Folsom Lake (10,000 surface acres, 75 mi shoreline) and Lake Natoma (540 surface acres, 8 mi shoreline). Offers direct access to Lake Natoma for paddling, rowing, and kayaking, plus fishing, picnicking, and two reservable group sites (up to 50 people). Located at Greenback Lane and Folsom-Auburn Road.</p>
+            </div>
+        `);
+    </script>
+</body>
+</html>
